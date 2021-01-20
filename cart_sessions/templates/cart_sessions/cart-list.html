@@ -1,0 +1,34 @@
+{% extends 'userapp/user-base.html' %}
+
+{% block content %}
+
+<br>
+<div class="container">
+    Товаров в корзине (в сессии): {{ book_quantity }} общей стоимостью {{ total_price }} BYN
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <td>Наименование</td>
+                <td style="text-align: left;padding-right: 0%;">Количество</td>
+                <td style="text-align: right; padding-right: 40px;">Цена</td>
+                <td style="text-align: right; padding-right: 40px;">Стоимость</td>
+            </tr>
+        </thead>
+        <tr>
+            {% for obj in book_list.values %}
+            <td style="text-align: left; color: blue;">{{ obj.product }}</td>
+            <td style="text-align: right;padding-right: 20%;">{{ obj.quantity }}</td>
+            <td style="text-align: right; padding-right: 40px;">{{ obj.price }}</td>
+            <td style="text-align: right; padding-right: 40px;">{{ obj.total_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <div style="width: 100%; display: inline-block;position: relative;">
+        <a class="btn btn-light btn-success" href="#">Оформить заказ</a>
+        <a class="btn btn-light btn-success" href="{% url 'cart_sess:clear-cart-session' %}"
+            style="position:absolute; margin: auto; right:0px;">Очистить корзину</a>
+    </div>
+</div>
+
+{% endblock %}

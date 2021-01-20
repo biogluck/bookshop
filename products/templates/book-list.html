@@ -1,0 +1,24 @@
+{% extends 'admincore/admin-base.html' %}
+
+{% block content %}
+    <h2>List of items in {{ view_name | title }}</h2>
+<div>
+    <table class="table table-striped table-sm">
+        <tr>
+        {% for obj in object_list %}
+        <td>{{ obj.name }}</td>
+        <td><a href= {{ obj.get_view_url }} class="btn btn-primary btn-sm active" role="button" aria-pressed="true" >View... </a></td>
+        <td><a href= {{ obj.get_update_url }} class="btn btn-primary btn-sm btn-warning active" role="button" aria-pressed="true" >Edit...</a></td>
+        <td><a href= {{ obj.get_delete_url }} class="btn btn-primary btn-sm btn-danger active" role="button" aria-pressed="true" >Delete...</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+<div>
+    <br>
+    <a href= {{add_url}} class="btn btn-primary btn-add" role="button">Add new item</a> <!---->
+</div>
+    <br>
+    <a href="/admin-shop/"> Go back to admin page</a>
+
+{% endblock %}

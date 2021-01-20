@@ -1,0 +1,56 @@
+{% extends 'userapp/user-base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<br>
+<div class="container">
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <td>Наименование</td>
+                <td>Количество</td>
+                <td>Цена</td>
+                <td>Стоимость</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tr>
+            {% for obj in object.products_in_cart.all %}
+            <td>{{ obj.book }}</td>
+            <td style="text-align: right;">{{ obj.quantity }}</td>
+            <td style="text-align: right; padding-right: 5px;">{{ obj.price }}</td>
+            <td style="text-align: right; padding-right: 5px;">{{ obj.cost }}</td>
+            <td style="text-align: center; width: 5%;">-</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>Итого</td>
+            <td style="text-align: right; padding-right: 5px;">{{ object.products_count }}</td>
+            <td></td>
+            <td style="text-align: right; padding-right: 5px;">{{ object.total_cost }}</td>
+            <td></td>
+        </tr>
+
+    </table>
+    <br>
+    <div>
+        <a class="btn btn-light btn-success float-right" href="{% url 'cart:cart-clear'%}">
+            Очистить корзину</a>
+    </div>
+    <br />
+    <br>
+    {% if object.products_count > 0 %}
+    <div class="card bg-light border-primary mb-3">
+        <h5 class="card-header border-primary">Оформить заказ</h5>
+        <form action="{% url 'orders:checkout' %}" method="POST" class="card-body">
+            {% csrf_token %}
+            <h5 class="card-title">* - обязательны для заполнения</h5>
+            <p class="card-text">{{ form | crispy }}</p>
+            <button class="btn btn-danger btn-block" type="submit">Оформить заказ</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

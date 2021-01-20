@@ -1,0 +1,39 @@
+{% extends 'admincore/admin-base.html'%}
+{% load static %}
+
+{% block content %}
+<div class="container">
+        <h1>Список заказов</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Заказ</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Клиент</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">email</th>
+                <th scope="col">..</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for object in object_list %}
+            <tr style="padding-bottom: 2px;">
+                <th scope="row">{{ object.pk }}</th>
+                <td>{{ object }}</td>
+                <td>{{ object.status.name }}</td>
+                <td>{{ object.cart.user.username }}</td>
+                <td>{{ object.phone }}</td>
+                <td>{{ object.email }}</td>
+                <td>
+                    <a href="#" class="btn btn-danger btn-small mx-1"><i class="fas fa-trash"></i>
+                        <a href="{% url 'orders:order-detail' object.pk %}" class="btn btn-success btn-small mx-1"><i
+                                class="fas fa-edit"></i>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+   {% include 'paginator.html' %}
+</div>
+{% endblock %}

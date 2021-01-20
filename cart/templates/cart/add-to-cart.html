@@ -1,0 +1,18 @@
+{% extends 'userapp/user-base.html' %}
+
+{% block content %}
+<h2 style="text-align: center;">Добавить в корзину</h2>
+
+<div class="container" style="margin: 0 auto;">
+    <h6> {{ object.book }} </h4>
+    <br>
+    <p>Введите количество</p>
+    <form method="POST" enctype="multipart/form-data" * action="">
+
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button type="submit" class="btn btn-primary">В корзину</button>
+    </form>
+</div>
+{% endblock content%}

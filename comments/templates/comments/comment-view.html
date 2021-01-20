@@ -1,0 +1,16 @@
+{% extends 'reference/base.html' %}
+
+{% block content %}
+<div class="main-container">
+    <h3>Detail of item in {{ ref_name }}</h3>
+    <p># of object: {{ object.pk }}</p>
+    <p>Item: {{ object }}</p>
+
+</div>
+{% endblock content %}
+
+<footer>
+    <div class="main-container">
+        <a style="text-align: center;" href="/admin-shop/">Go to admin main page</a>
+    </div>
+</footer>

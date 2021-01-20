@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Book detail</h1>
+        <h3> {{ info.name }} </h3>
+        <div v-for="author in info.author" class="currency">
+            {{ author.name }}
+            <!-- <span class="lighten">
+                <span v-html="currency.symbol"></span>{{ currency.rate_float | currencydecimal }}
+            </span> -->
+        </div>
+        <button @click="getAuthors">get authors</button><br>
+
+        <input type="text" v-model="s" placeholder="search"><button @click="search">Go!</button><br>
+    </div>
+
+
+    <script>
+        //const axios = require('axios');
+        // import axios from axios
+        var app = new Vue({
+            el: '#app',
+            data: {
+                info: null,
+                message: null,
+                authors: null,
+                s: null,
+            },
+            methods: {
+                clicked() {
+                    this.getAuthor();
+                },
+                getAuthor() {
+                    axios.get("http://localhost:8000/book-api-view/2")
+                        .then(response => this.info = response.data);
+                    //axios.get("http://localhost:8000/book-api-view/2")
+                    //  .then(response => console.log(response.data.author));
+                },
+                getAuthors() {
+                    axios.get("http://localhost:8000/author-set/")
+                        //.then(response => this.authors = response.data);
+                        .then(response => console.log(response.data));
+                },
+                search() {
+                    axios.get("http://localhost:8000/author-set/s/?s=" + this.s)
+                        //.then(response => this.authors = response.data);
+                        .then(response => {
+                            console.log(response.data);
+                            this.authors = response.data
+                        })
+
+                // console.log(this.s)
+            }
+            },
+            watch: {
+                s: function()  {
+                    this.search();
+                }
+            },
+            mounted() {
+                axios.get("http://localhost:8000/book-api-view/2")
+                    .then(response => this.info = response.data);
+                axios.get("http://localhost:8000/book-api-view/2")
+                    .then(response => console.log(response.data.author));
+            },
+        }
+        )
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{% extends 'userapp/user-base.html' %}
+
+{% block title %}
+Поиск - 
+{{ block.super }}
+{% endblock title %}
+
+{% block content %}
+{% comment %}
+<div class="main-container">
+    <form method="GET" class="form-group" action="{% url 'search:search-results' %}">
+        <label for="name">Название</label>
+        <input class="form-control" type="text" name="name">
+        <button class="btn btn-success mt-2" type="submit">Искать по названию</button>
+    </form>
+    <form method="GET" class="form-group" action="{% url 'search:search-results' %}">
+        <label for="author">Автор</label>
+        <input class="form-control" type="text" name="author">
+        <button class="btn btn-success mt-2" type="submit">Искать по автору</button>
+    </form>
+    <form method="GET" class="form-group" action="{% url 'search:search-results' %}">
+        <label for="year">Год издания</label>
+        <input class="form-control" type="text" name="year">
+        <button class="btn btn-success mt-2" type="submit">Искать по году издания</button>
+    </form>
+</div>
+{% endcomment %}
+
+<div class="main-container">
+    <form method="GET" class="form-group" action="{% url 'search:search-results' %}">
+        <label for="name">Название</label>
+        <input class="form-control" type="text" name="name">
+        
+        <label for="author">Автор</label>
+        <input class="form-control" type="text" name="author">
+        <label for="year">Год издания</label>
+        <input class="form-control" type="text" name="year">
+        <button class="btn btn-success mt-2" type="submit">Искать </button>
+    </form>
+</div>
+
+
+<footer>
+    <div class="main-container">
+        <a style="text-align: center;" href="/">На главную</a>
+    </div>
+</footer>
+
+{% endblock content %}

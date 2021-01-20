@@ -1,0 +1,18 @@
+for tag in taglist
+    a href = url for all objects with the tag {% url 'tag:tag-vew tag.pk' %}
+endfor
+
+<form method="POST" action="{% url 'tags:tag-add' %}">
+    crsf
+    <div class="form-group">
+        <label for = "tag">Add tag</label>
+        <input type="text" name="tag" id="tag" class="form-control">
+        <input type="hidden" name="ct_id" id="ct_id">
+        <input type="hidden" name="obj_id" id="obj_id">
+        <input type="hidden" name="next" id="next" value="{% tags object request.get_full_path %}">
+        
+    </div>
+</form>
+
+{{next}}
+{% tags object request.get_full_path %}

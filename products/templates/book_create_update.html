@@ -1,0 +1,13 @@
+{% extends 'admincore/admin-base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h2>{{ ref_action }}</h2>
+<div class="container">
+    <form method="POST" enctype="multipart/form-data" * action="">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}

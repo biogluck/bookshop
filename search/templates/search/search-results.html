@@ -1,0 +1,26 @@
+{% extends 'userapp/user-base.html' %}
+
+{% block title %}
+Результаты поиска -
+{{ block.super }}
+{% endblock title %}
+
+{% block content %}
+
+
+<h1>Результаты поиска</h1>
+
+{% if query_results %}
+<ul>
+    {% for result in query_results %}
+    <li>
+        <a href={{result.get_view_url}}> {{result}} </a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>По вашему запросу ничего не найдено, попробуйте <a href="{% url 'search:search-view' %}">изменить критерии
+        поиска</a>, или вернитесь <a href="/">на главную</a></p>
+{% endif %}
+
+{% endblock content %}

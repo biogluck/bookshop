@@ -1,0 +1,21 @@
+.main-container {width: 1020px;
+    background-color: white;
+    margin: 0 auto;
+    padding: 12px;}
+
+tr {border-bottom: 1px solid grey;
+}
+
+h1 {Text-align: center}
+h3 {margin-bottom: 1em;}
+
+.btn-add {background-color: green;
+    margin-right: 26px;}
+
+.card-title {
+   text-align: center;}
+
+.card-text {
+    text-align: center;
+    font-size: 300%;
+    /* color: red; */}

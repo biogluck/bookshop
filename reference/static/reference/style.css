@@ -1,0 +1,12 @@
+.main-container {width: 1020px;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    padding: 12px;}
+
+tr {border-bottom: 1px solid grey;
+}
+
+h1 {Text-align: center}
+
+.btn-add {background-color: green;
+    margin-right: 26px;}

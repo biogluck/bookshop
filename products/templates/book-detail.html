@@ -1,0 +1,64 @@
+{% extends 'admincore/admin-base.html' %}
+{% load thumbnail %}
+{% load comments %}
+
+
+{% block content %}
+<h3>Detail of item in Books. #{{ object.pk }}</h3>
+<table class="table">
+    <caption style="caption-side: top;">"{{ object.name }}"</caption>
+    <tbody>
+        <tr>
+            <td>Обложка</td>
+            <td>
+                <img alt="image preview" class="img-thumbnail" src="{{ object.cover.url }}">
+                {% comment %}
+                width="{{ im.width }}" height="{{ im.height }}"
+                {% endif %}
+                {% if object.cover%}
+                {% thumbnail object.cover "100x100" crop="center" as im %}
+                {% endthumbnail %}
+                {% endcomment %}
+            </td>
+        </tr>
+        <td>Цена</td>
+        <td>{{ object.price }}</td>
+        <tr>
+            <td>Автор(ы)</td>
+            <td>{{ object.author_list}}</td>
+        </tr>
+        <td>Серия</td>
+        <td>{{ object.series }}</td>
+        <tr>
+            <td>Жанр(ы)</td>
+            <td>{{ object.genre_list }}</td>
+        </tr>
+        <tr>
+            <td>Год издания</td>
+            <td>{{ object.year }}</td>
+        </tr>
+        <tr>
+            <td>Pages</td>
+            {% if object.pages %}
+            <td>{{ object.pages }}</td>
+            {% else %}
+            <td></td>
+            {% endif %}
+        </tr>
+        <tr>
+
+            <td>ISBN</td>
+            <td>{{ object.isbn }}</td>
+        </tr>
+        <tr>
+            <td>Издатель</td>
+            <td>{{ object.publisher }}</td>
+        </tr>
+    </tbody>
+</table>
+<br>
+<hr>
+{% comments object request.get_full_path %}
+<br>
+<a href="/admin-shop/">Go to admin page</a>
+{% endblock %}

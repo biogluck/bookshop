@@ -1,0 +1,11 @@
+{% extends 'admincore/admin-base.html'%}
+{% load static %}
+{% block content %}
+<div class="container">
+    {{ object }}
+    <br>
+    {{ object.status.name}}  
+    {{ object.status.pk}}
+
+</div>
+{% endblock %}

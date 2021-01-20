@@ -1,0 +1,60 @@
+{% load comments %}
+<br>
+<div class="container" style="background-color: white;">
+    <div class="page-header">
+        <h1> Комментарии </h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if messages %}
+        <div class="alert alert-warning">
+            <div class="container text-center">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <small class="pull-right">{{comments_count}} comment(s)</small>
+    </div>
+    {% for comment in comments %}
+    <div class="media">
+        <div class="media-body">
+            <br>
+            {% if comment.commentator %}
+            <p class="text-left" style="margin-right:5px;">
+                <span> {{ comment.commentator }}</span>
+                {% else %}
+                <p class="text-left" style="margin-right:5px;">
+                    <span>Anonymous</span>
+                    {% endif %}
+                    <span class="text-secondary  date text-left" style="margin-right:5px;">
+                        {{ comment.date_last_modified|date:"d E Y H:i" }}</span>
+                </p>
+                &laquo; {{ comment }} &raquo;
+                <p>
+                    <a href="{% url 'comments:comment-view' comment.pk %}">View</a>
+                </p>
+                <hr>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="card">
+        <form method="POST" action="{% url 'comments:comment-add' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="comment">Новый комментарий</label>
+                <textarea type="text" name="comment" id="comment" class="form-control"></textarea>
+                <input type="hidden" name="ct_id" id="ct_id" value="{{ ct_id }}">
+                <input type="hidden" name="obj_id" id="obj_id" value="{{ obj_id }}">
+                <input type="hidden" name="next" id="next" value="{{ next }}">
+                <input type="hidden" name="user" id="user" value="{{ usr }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Отправить комментарий</button>
+        </form>
+    </div>
+    {% comment %} {% comments object request.get_full_path %} {% endcomment %}

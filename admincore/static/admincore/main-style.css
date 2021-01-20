@@ -1,0 +1,48 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
+body { 
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif; 
+}
+
+h1, h2, h3, h4, h5 , h6 { 
+    font-family: 'Ubuntu', sans-serif; font-weight:normal;
+}
+
+/* body {
+    background-color: #eeeeee; 
+}*/
+.main-container {width: 1020px;
+    background-color: white;
+    margin: 0 auto;
+    padding: 12px;}
+
+.txt-center {
+    Text-align: center;
+}
+
+/* h1, h3 {Text-align: center;} */
+
+
+caption {
+    color: black;
+    caption-side: top;
+    text-align: center;
+    padding: 5px 0; 
+    font-size: 20px;
+    }
+
+th {
+    font-weight: normal;
+    color: #039;
+    padding: 5px 5px;
+    }
+
+td {
+    color: #669;
+    border-top: 1px solid #e8edff;
+    padding: 5px 5px;
+    }
+
+tr:hover td {background: #e8edff;}

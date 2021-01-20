@@ -1,0 +1,15 @@
+{% extends 'userapp/user-base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<head>
+    <title>Книжный магазин - главная</title>
+</head>
+<h1>Добро пожаловать в книжный магазин "Книжный магазин"</h1>
+{% if user.is_authenticated %}
+<strong>{{ user.username }}</strong>, вы можете перейти на <a href="/admin-shop/">страницу администрирования</a>
+{% endif %}
+
+{% endblock %}

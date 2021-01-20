@@ -1,0 +1,38 @@
+{% extends 'userapp/user-base.html' %}
+{% load thumbnail %}
+
+{% block title %}
+Каталог - 
+{{ block.super }}
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for book in object_list %}
+        <div class="card m-3 " style="width: 18rem;">
+            <div class="card-body">
+                
+                {% if book.cover %}
+                <p>
+                <a href="{% url 'user-book-detail' book.pk %}">
+                    <img class="card-img-top img-thumbnail" alt="image preview" src="{{ book.cover.url }}">
+                    </a>
+               </p>
+                {% else %}
+                <img class="card-img-top img-thumbnail" alt="no-image" src="/media/no-image-icon-23485.png">
+                {% endif %}
+                <p class="card-title">{{ book.name }}</p>
+                <p class="card-text">Автор(ы): {{ book.author_list}}</p>
+                <p class="card-text">Цена: {{ book.price }} BYN</p>
+                <a href="{% url 'cart:add-to-cart' book.pk %}">В корзину</a>
+                <a href="{% url 'cart_sess:add-to-cart-session' book.pk %}">В корзину (session)</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include 'paginator.html' %}
+</div>
+
+{% endblock %}
